@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sobre - OctaVision</title>
+
+<!-- Fontes -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap" />
+<link href="https://fonts.cdnfonts.com/css/space-age" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #000000;
+    --text: #fff;
+    --btn-bg: rgba(255,255,255,0.1);
+    --btn-text: #fff;
+    --clr-1: #00c2ff;
+    --clr-2: #33ff8c;
+    --clr-3: #ffc640;
+    --clr-4: #e54cff;
+  }
+
+  [data-theme="light"] {
+    --bg: #fff;
+    --text: #000;
+    --btn-bg: rgba(0,0,0,0.1);
+    --btn-text: #000;
+  }
+
+  * { box-sizing: border-box; margin:0; padding:0; font-family: 'Inter', sans-serif; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  header {
+    position: fixed;
+    top:0; left:0; right:0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    backdrop-filter: blur(8px);
+    z-index: 50;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, rgba(0,194,255,0.6), rgba(51,255,140,0.6), rgba(255,198,64,0.6), rgba(229,76,255,0.6));
+  }
+
+  header::before {
+    content: '';
+    position: absolute; top:0; left:0; right:0; bottom:0;
+    background: linear-gradient(90deg, var(--clr-1), var(--clr-2), var(--clr-3), var(--clr-4), var(--clr-1));
+    background-size: 400% 100%;
+    opacity:0.1;
+    z-index:-1;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  .logo { height: 48px; transition: 0.3s; }
+
+  .nav { display: flex; gap: 12px; align-items: center; }
+  .glow-button {
+    position: relative; display: inline-block; padding: 8px 14px;
+    font-size: 12px; text-decoration: none; color: var(--btn-text);
+    text-transform: uppercase; font-weight: 700; letter-spacing: 1px;
+    border: none; background: transparent; cursor: pointer;
+    transition: 0.3s;
+  }
+  .glow-button:hover { transform: translateY(-2px); }
+
+  .dark-mode-toggle {
+    padding: 5px 10px; font-size: 10px;
+    border: none; border-radius: 4px; cursor: pointer;
+    background: var(--btn-bg); color: var(--btn-text);
+    transition: 0.3s;
+  }
+  .dark-mode-toggle:hover { opacity: 0.8; }
+
+  @keyframes gradientShift {
+    0% { background-position:0% 50%; }
+    50% { background-position:100% 50%; }
+    100% { background-position:0% 50%; }
+  }
+
+  main.content {
+    margin-top: 120px;
+    padding: 2rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .text {
+    flex: 1 1 400px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+
+  .image-container {
+    flex: 1 1 300px;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,194,255,0.5);
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+
+  .title {
+    font-family: 'Space Age', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    flex-basis: 100%;
+    background: linear-gradient(90deg, var(--clr-1), var(--clr-2), var(--clr-3), var(--clr-4), var(--clr-1));
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s ease infinite, fadeIn 2s forwards;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0; transform: translateY(20px);}
+    to { opacity:1; transform: translateY(0);}
+  }
+
+  @media (max-width: 768px) {
+    main.content { flex-direction: column; align-items: center; }
+    .image-container { max-width: 100%; margin-top: 2rem; }
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<header>
+  <a href="index.html" class="logo-link">
+    <img src="logo.png" alt="OctaVision Logo" class="logo" />
+  </a>
+
+  <nav class="nav">
+    <a class="glow-button" href="funcionamento.html">Como funciona</a>
+    <a class="glow-button" href="sobre.html">Sobre nós</a>
+    <a class="glow-button" href="quemsomos.html">StartUp</a>
+    <a class="glow-button" href="co2.html">CO₂</a>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">MODE</button>
+  </nav>
+</header>
+
+<main class="content">
+  <div class="text">
+    <h1 class="title">CO₂ e seus prejuízos</h1>
+    <h2>1. Efeito estufa intensificado</h2>
+    <ul>
+      <li>O CO₂ é um dos principais gases do efeito estufa.</li>
+      <li>Ele retém o calor do sol na atmosfera da Terra.</li>
+    </ul>
+
+    <h2>2. Mudanças climáticas</h2>
+    <ul>
+      <li>Derretimento das calotas polares.</li>
+      <li>Elevação do nível dos oceanos.</li>
+      <li>Secas e enchentes mais intensas.</li>
+      <li>Furacões e desastres naturais mais frequentes.</li>
+    </ul>
+
+    <h2>3. Impactos na saúde humana</h2>
+    <ul>
+      <li>Aumento de doenças respiratórias.</li>
+      <li>Problemas cardiovasculares agravados.</li>
+      <li>Mortalidade por calor extremo.</li>
+    </ul>
+
+    <h2>4. Impactos na agricultura e alimentos</h2>
+    <ul>
+      <li>Alteração na sazonalidade das plantações.</li>
+      <li>Redução na produção de alimentos.</li>
+      <li>Risco à segurança alimentar.</li>
+    </ul>
+
+    <h2>5. Desequilíbrio ecológico</h2>
+    <ul>
+      <li>Perda de biodiversidade.</li>
+      <li>Extinção de espécies.</li>
+      <li>Alterações nos ecossistemas.</li>
+    </ul>
+  </div>
+
+  <div class="image-container">
+    <img src="co2.png" alt="Imagem ilustrativa sobre CO₂ e seus prejuízos" />
+  </div>
+</main>
+
+<section>
+  <h1 class="title" style="text-align:center; margin-top: 3rem;">Como reduzir CO₂ com a SmartCam</h1>
+  <p class="text" style="max-width:800px; margin:1rem auto; text-align:center;">
+    A SmartCam monitora o fluxo de veículos e identifica congestionamentos em tempo real. 
+    Otimizando semáforos, reduz o tempo de motores ligados sem necessidade — um dos principais emissores de CO₂.
+  </p>
+</section>
+
+<footer>
+  Todos os direitos reservados • OctaVision ©
+</footer>
+
+<script>
+  function toggleDarkMode() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+  }
+</script>
+
+</body>
+</html>

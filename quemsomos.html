@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre - SmartCam / OctaVision</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Space+Age&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --card: #0b0b0b;
+      --text-color: #ffffff;
+      --muted: rgba(255,255,255,0.7);
+      --accent: #00c2ff;
+      --accent-2: #33ff8c;
+      --blur: 1rem;
+      --radius: 14px;
+    }
+
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --card: #f5f5f5;
+      --text-color: #000000;
+      --muted: rgba(0,0,0,0.7);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, Raleway, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    html,body{height:100%;transition:background 0.3s,color 0.3s;}
+    body{min-height:100vh;position:relative;padding-top:100px;padding-bottom:80px;overflow-x:hidden;background:var(--bg);color:var(--text-color);transition:all 0.3s ease;}
+
+    /* ==== HEADER ==== */
+    header{
+      position:fixed;top:0;left:0;right:0;height:80px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 28px;
+      background:linear-gradient(135deg, rgba(0,194,255,0.6), rgba(51,255,140,0.6), rgba(255,198,64,0.6), rgba(229,76,255,0.6));
+      backdrop-filter: blur(6px);
+      z-index:50;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 4px 20px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+
+    header::before{
+      content:''; position:absolute;top:0;left:0;right:0;bottom:0;
+      background:linear-gradient(90deg, var(--accent), var(--accent-2), #ffc640, #e54cff, var(--accent));
+      background-size:400% 100%; opacity:0.1; z-index:-1;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    .logo{height:48px;transition:0.3s}
+    .nav{display:flex;gap:12px;align-items:center}
+    .glow-button {
+      position: relative; display: inline-block; padding: 9px 14px; font-size: 12px; color: var(--text-color);
+      text-decoration: none; text-transform: uppercase; letter-spacing: 1px; overflow: hidden; font-weight: bold;
+      background: none; border: none; transition: 0.5s;
+    }
+    .glow-button:hover { background: rgba(255,255,255,0.1); box-shadow: 0 0 10px rgba(255,255,255,0.2); transform: translateY(-2px); }
+    .glow-button::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s;
+    }
+    .glow-button:hover::before { left: 100%; }
+    .dark-mode-toggle{padding:5px 10px;font-size:10px;background:rgba(255,255,255,0.1);border:none;border-radius:4px;color:#fff;cursor:pointer;transition:0.3s}
+    .dark-mode-toggle:hover{background:rgba(255,255,255,0.2)}
+
+    @keyframes gradientShift {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* ==== HERO / CONTEÚDO ==== */
+    .hero{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:48px 18px}
+    .title{font-family:'Space Age', sans-serif;font-weight:400;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:-1px;margin-bottom:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2),#ffc640,#e54cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:0;animation:fadeIn 2s forwards}
+    .subtitle{color:var(--muted);font-size:1.05rem;margin-bottom:22px}
+
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px);transition:all 0.3s ease;}
+    .card h3{font-size:1.05rem;margin-bottom:8px}
+    .card p{color:var(--muted);font-size:0.95rem;line-height:1.45;transition:color 0.3s ease;}
+
+    .full-text{background:var(--card);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-top:28px;transition:all 0.3s ease;}
+    .full-text h2{margin-bottom:12px}
+    .full-text p{color:var(--muted);line-height:1.6;transition:color 0.3s ease;}
+
+    footer{position:fixed;bottom:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.85rem;background:var(--card);backdrop-filter: blur(6px);transition:all 0.3s ease;}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; padding: 1.5rem 1rem; }
+      .logo-link { margin: 0.2rem 0; }
+      .nav-buttons { margin: 0.5rem 0; flex-wrap: wrap; justify-content: center; }
+      .glow-button { margin: 5px; padding: 8px 12px; font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo-link" aria-label="Voltar para a página inicial">
+    <img src="logohorizontepngblack.png" alt="OctaVision Logo" class="logo" />
+  </a>
+
+  <nav class="nav" style="margin-left:auto;">
+    <a class="glow-button" href="funcionamento.html">Como funciona</a>
+    <a class="glow-button" href="sobre.html">Sobre nós</a>
+    <a class="glow-button" href="quemsomos.html">StartUp</a>
+    <a class="glow-button" href="co2.html">CO₂</a>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">MODE</button>
+  </nav>
+</header>
+
+<main class="hero">
+  <div class="container">
+    <h1 class="title">EQUIPE - DEVs</h1>
+    <div style="margin-top:20px;text-align:center">
+      <img src="grupophotojpg.jpg" alt="Foto do grupo SmartCam/OctaVision" style="max-width:100%;border-radius:12px">
+    </div>
+    <p class="subtitle">Visão computacional, ecologia e tecnologia aplicada para cidades mais inteligentes.</p>
+
+    <section class="full-text" aria-labelledby="quem-somos">
+      <h2 id="quem-somos">Quem somos</h2>
+      <p>A equipe da <strong>SmartCam/OctaVision</strong> é formada por estudantes multidisciplinares que colaboram para criar um sistema inteligente de monitoramento e controle de tráfego com tecnologia de ponta.</p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Grefener &amp; Clara <span class="role" style="color:var(--accent-2)">— Visão Computacional</span></h3>
+          <p>Grefener e Clara foram responsáveis pela implementação da visão computacional da IA utilizando YOLO, Python, Pandas, Ultralytics, Cvzone e OpenCV, detectando veículos essenciais para o projeto.</p>
+        </div>
+        <div class="card">
+          <h3>Motomoto <span class="role" style="color:var(--accent-2)">— Front-end / App</span></h3>
+          <p>Motomoto desenvolveu a parte front-end do aplicativo com Flet, Flutter, Python, HTML, JS e CSS, tornando a interface funcional e estilizada.</p>
+        </div>
+        <div class="card">
+          <h3>Isaac <span class="role" style="color:var(--accent-2)">— Banco de Dados</span></h3>
+          <p>Isaac implementou o banco de dados e criou validações rigorosas para login, cadastro e armazenamento das informações geradas pela IA usando PostgreSQL e pgAdmin 4.</p>
+        </div>
+        <div class="card">
+          <h3>Peixoto, Yukio &amp; Angelo <span class="role" style="color:var(--accent-2)">— Aplicação Web</span></h3>
+          <p>Construíram a aplicação web usando Streamlit, HTML e CSS, integrando com PostgreSQL para escalabilidade e segurança.</p>
+        </div>
+        <div class="card">
+          <h3>Ailton <span class="role" style="color:var(--accent-2)">— Maquete &amp; Integração</span></h3>
+          <p>Ailton lidera a maquete física, integrando sistemas inteligentes no Raspberry Pi, sincronizando IA com hardware e garantindo eficiência para demonstrações reais.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:18px;color:var(--muted)">A colaboração entre as diferentes áreas torna a SmartCam/OctaVision robusta e pronta para oferecer soluções reais às cidades, auxiliando gestores públicos na tomada de decisões inteligentes e eficientes.</p>
+    </section>
+  </div>
+</main>
+
+<footer>Todos os direitos reservados • OctaVision ©</footer>
+
+<script>
+  function toggleDarkMode() {
+    const html = document.documentElement;
+    const logo = document.querySelector('.logo');
+    if(html.getAttribute('data-theme') === 'dark'){
+      html.setAttribute('data-theme','light');
+      logo.src = 'logohorizontepngblack.png';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      logo.src = 'logohorizontepng.png';
+    }
+  }
+</script>
+
+</body>
+</html>
