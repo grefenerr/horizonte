@@ -184,21 +184,6 @@
       transform: translateY(-1px) scale(1.05);
     }
 
-    .theme-toggle::before {
-      content: '✨';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: all 0.3s ease;
-      font-size: 16px;
-    }
-
-    .theme-toggle:hover::before {
-      opacity: 1;
-      animation: sparkle 0.6s ease infinite;
-    }
 
     /* Hero Section */
     .hero {
@@ -223,19 +208,11 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: rainbowShift 3s ease infinite, bounceIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      animation: rainbowShift 3s ease infinite, fadeInUp 1.5s ease forwards;
       position: relative;
       display: inline-block;
     }
 
-    .hero-title::after {
-      content: '🚀';
-      position: absolute;
-      top: -30px;
-      right: -40px;
-      font-size: 0.2em;
-      animation: float 2s ease-in-out infinite;
-    }
 
     .hero-subtitle {
       font-size: 1.5rem;
@@ -256,13 +233,6 @@
       display: inline-block;
     }
 
-    .ecologia::after {
-      position: absolute;
-      top: -5px;
-      right: -15px;
-      font-size: 0.6em;
-      animation: float 2s ease-in-out infinite;
-    }
 
     /* Footer */
     footer {
@@ -334,43 +304,78 @@
     /* Responsive */
     @media (max-width: 768px) {
       header {
-        padding: 0 1rem;
+        padding: 1rem;
         height: auto;
         flex-direction: column;
-        padding: 1rem;
-      }
-
-      .nav {
         gap: 1rem;
-        margin-top: 1rem;
       }
 
-      .nav-link {
-        font-size: 12px;
-      }
-
-      .hero {
-        padding: 120px 1rem 0;
-        min-height: calc(100vh - 120px);
-      }
-
-      .hero-title {
-        font-size: clamp(3rem, 10vw, 6rem);
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-    }
-
-    @media (max-width: 480px) {
       .nav {
-        flex-direction: column;
         gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .nav-link {
         font-size: 11px;
+        padding: 6px 12px;
+      }
+
+      .theme-toggle {
+        font-size: 10px;
+        padding: 8px 16px;
+      }
+
+      .hero {
+        padding: 140px 1rem 2rem;
+        min-height: calc(100vh - 140px);
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      footer {
+        position: relative;
+        margin-top: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0.8rem;
+      }
+
+      .nav {
+        gap: 0.3rem;
+      }
+
+      .nav-link {
+        font-size: 10px;
+        padding: 5px 10px;
+      }
+
+      .theme-toggle {
+        font-size: 9px;
+        padding: 6px 12px;
+      }
+
+      .hero {
+        padding: 120px 0.8rem 1.5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
       }
     }
   </style>
